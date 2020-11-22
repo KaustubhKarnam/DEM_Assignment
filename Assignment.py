@@ -11,15 +11,15 @@ for j in range (0, m):
         y.append (math.sqrt(((2*r)**2)-((r)**2))*i)
         
 
-for i in range (1, 2*(m+1), 2):
-    for j in range(0, 2*n, 2):
+for i in range (1, (m+1)):
+    for j in range(0, int(n/2)):
         x.append ((r*2)*i)
-        x.append (r * i)
+        x.append (((r*2)*i)-r)
  
 x = np.array(x)
 y = np.array(y)
-
-print (x)
+""" 
+print (x) """
 
 fig, ax = plt.subplots()
 for i in range(0,n*m):
