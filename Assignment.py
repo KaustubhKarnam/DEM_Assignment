@@ -12,12 +12,14 @@ for j in range (0, m):
         
 
 for i in range (1, 2*(m+1), 2):
-    for j in range(0, 2*n, n):
+    for j in range(0, 2*n, 2):
         x.append ((r*2)*i)
         x.append (r * i)
  
 x = np.array(x)
 y = np.array(y)
+
+print (x)
 
 fig, ax = plt.subplots()
 for i in range(0,n*m):
