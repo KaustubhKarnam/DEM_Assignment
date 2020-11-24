@@ -160,18 +160,23 @@ for i in range (0,len(probability)):
 #######################################################################
 #######################################################################
 
+# Part A - Brute Force method.
 
 for i in range (0, len(post_prob_filter_value)):
     new_val = []
     
     for j in range (0, len(post_prob_filter_value)):
 
-        if abs(math.dist([post_prob_filter_x[j],post_prob_filter_y[j]],[post_prob_filter_x[i],post_prob_filter_y[i]])) <= (2*r):
+        if abs(math.dist([post_prob_filter_x[j],post_prob_filter_y[j]],[post_prob_filter_x[i],post_prob_filter_y[i]]))
+         <= (2*r):
             new_val.append(post_prob_filter_value[j])
     
     
-    print(" For point ", post_prob_filter_value[i], ", the touching points are --")
+    """ print(" For point ", post_prob_filter_value[i], ", the touching points are --")
     for k in range (0, len(new_val)):
         if new_val[k] != post_prob_filter_value[i]:
-            print(new_val[k])
+            print(new_val[k]) """
 
+### For some reason the last point is not checking for other points. Add a condition that 
+### if one point has values, the correspoind poit should also have the first point included
+### in its list of touching points.
