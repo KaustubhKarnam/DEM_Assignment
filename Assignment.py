@@ -143,8 +143,14 @@ for i in range (0,len(probability)):
         circles = plt.Circle((x[value], y[value]), r, color='black')
         ax.add_artist(circles) 
         plt.annotate(value, (x[value], y[value]), color = 'red')
-
-
+    
+    grid_x = []
+    grid_y = []
+    for i in range (0,n+1,2*r):
+        for j in range (0,n+1,2*r): 
+            grid_x.append(i)
+            grid_y.append(j)
+    plt.scatter(grid_x,grid_y)
     ax.set_xlim(-r,n)
     ax.set_ylim(-r,n)
     fig.savefig('hex_matrix.png')
@@ -167,8 +173,8 @@ for i in range (0, len(post_prob_filter_value)):
     
     for j in range (0, len(post_prob_filter_value)):
 
-        if abs(math.dist([post_prob_filter_x[j],post_prob_filter_y[j]],[post_prob_filter_x[i],post_prob_filter_y[i]]))
-         <= (2*r):
+        if abs(math.dist([post_prob_filter_x[j],post_prob_filter_y[j]],[post_prob_filter_x[i],post_prob_filter_y[i]])) <= (2*r):
+        
             new_val.append(post_prob_filter_value[j])
     
     
@@ -178,5 +184,38 @@ for i in range (0, len(post_prob_filter_value)):
             print(new_val[k]) """
 
 ### For some reason the last point is not checking for other points. Add a condition that 
-### if one point has values, the correspoind poit should also have the first point included
+### if one point has values, the correspoind point should also have the first point included
 ### in its list of touching points.
+
+# Part B - Grid method.
+
+# Making the grid with points
+
+# Grid coordinates already added during plot ##
+
+grid_x = []
+grid_y = []
+for i in range (0,n+1,2*r):
+    for j in range (0,n+1,2*r): 
+        grid_x.append(i)
+        grid_y.append(j)
+
+x_square = []
+y_square = []
+square_number = []
+for j in range (0, len(grid_x)-((int(math.sqrt(len(grid_x))))+1)):
+    x_square.append([grid_x[j],grid_x[j+1],grid_x[int(j+(n/2)+1)],grid_x[int(j+(n/2)+2)]])
+    y_square.append([grid_y[j],grid_y[j+1],grid_y[int(j+(n/2)+1)],grid_y[int(j+(n/2)+2)]])
+    square_number.append(x_square)
+
+#print(len(square_number)) # 109 lists containing 4 values each
+point_square_number = []
+for i in range (0, len(square_number)):
+    for j in range(0, len(post_prob_filter_x)):
+        x_temp = np.array(x_square[i])
+        y_temp = np.array(y_square[i])
+        if (x_temp[0]<post_prob_filter_x[j]<=x_temp[3]) and (y_temp[0]<post_prob_filter_y[j]<=y_temp[3]):
+            point_square_number.append(i)
+
+print(len(point_square_number))
+print(len(post_prob_filter_x))
